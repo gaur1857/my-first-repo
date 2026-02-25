@@ -1,73 +1,31 @@
-kitchen:
-  size:
-    width: 10ft
-    depth: 10ft
-  entry:
-    direction: north
+name: Multi Job Pipeline
 
-  layout: L-shaped
-  style: modern_modular
+on:
+  push:
+    branches:
+      - main
 
-  walls:
-    north:
-      elements:
-        - type: tall_pantry
-          width: 2ft
-          depth: 24in
-        - type: refrigerator
-          width: 3ft
-        - type: microwave_oven_unit
-          width: 2ft
+jobs:
 
-    west:
-      elements:
-        - type: sink_base
-          width: 2.5ft
-        - type: counter
-          length: 6ft
-          depth: 24in
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build Step
+        run: echo "Building project..."
 
-    south:
-      elements:
-        - type: counter
-          length: 7ft
-          depth: 24in
-        - type: hob
-          width: 3ft
-          position: south_east_corner
-        - type: door
-          width: 3ft
+  test:
+    runs-on: ubuntu-latest
+    needs: build   # 👈 This runs AFTER build
+    steps:
+      - uses: actions/checkout@v3
+      - name: Test Step
+        run: echo "Running tests..."
 
-  clearance:
-    working_space: 3ft
-
-  cabinets:
-    base:
-      material: plywood
-      finish: matte_wood
-    wall:
-      material: plywood
-      finish: white_laminate
-
-  countertop:
-    material: quartz
-    color: white
-
-  appliances:
-    refrigerator: double_door
-    microwave: built_in
-    oven: built_in
-    hob: 3_burner
-    chimney: wall_mounted
-
-  lighting:
-    ceiling: recessed_led
-    under_cabinet: led_strip
-
-  flooring:
-    material: vitrified_tiles
-    color: light_grey
-
-  view:
-    camera_angle: north_entry
-    render_type: 3d
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test    # 👈 This runs AFTER test
+    steps:
+      - uses: actions/checkout@v3
+      - name: Deploy Step
+        run: echo "Deploying websit
