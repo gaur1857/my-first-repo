@@ -1,0 +1,73 @@
+kitchen:
+  size:
+    width: 10ft
+    depth: 10ft
+  entry:
+    direction: north
+
+  layout: L-shaped
+  style: modern_modular
+
+  walls:
+    north:
+      elements:
+        - type: tall_pantry
+          width: 2ft
+          depth: 24in
+        - type: refrigerator
+          width: 3ft
+        - type: microwave_oven_unit
+          width: 2ft
+
+    west:
+      elements:
+        - type: sink_base
+          width: 2.5ft
+        - type: counter
+          length: 6ft
+          depth: 24in
+
+    south:
+      elements:
+        - type: counter
+          length: 7ft
+          depth: 24in
+        - type: hob
+          width: 3ft
+          position: south_east_corner
+        - type: door
+          width: 3ft
+
+  clearance:
+    working_space: 3ft
+
+  cabinets:
+    base:
+      material: plywood
+      finish: matte_wood
+    wall:
+      material: plywood
+      finish: white_laminate
+
+  countertop:
+    material: quartz
+    color: white
+
+  appliances:
+    refrigerator: double_door
+    microwave: built_in
+    oven: built_in
+    hob: 3_burner
+    chimney: wall_mounted
+
+  lighting:
+    ceiling: recessed_led
+    under_cabinet: led_strip
+
+  flooring:
+    material: vitrified_tiles
+    color: light_grey
+
+  view:
+    camera_angle: north_entry
+    render_type: 3d
